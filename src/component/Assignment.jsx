@@ -51,6 +51,14 @@ export default function Assignment() {
   return (
     <>
       <Comment header="Comment" addComment={addComment} />
+      {sortedComment.length !== 0 && (
+        <>
+          <div className="sortMessage">
+            Sort By: Date and Time{" "}
+            <img src={require("./down-arrow.png")} alt="downarrow" />
+          </div>
+        </>
+      )}
       {sortedComment.map((comment, index) => {
         return <CommentHolder comment={comment} index={index} />;
       })}
