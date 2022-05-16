@@ -66,6 +66,16 @@ body{
     }
   }
 }
+.sortMessage{
+  width: calc(52vw);
+  display: flex;
+  justify-content: flex-end;
+  img{
+    height: 15px;
+    width: 12px;
+    margin: 5px 3px;
+  }
+}
 .editBoxHolder{
   padding: 20px;
   div{
