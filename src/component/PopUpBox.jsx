@@ -4,6 +4,7 @@ import storeReply from "../redux/action/storeReply";
 
 export default function PopUpBox({ commentToEdit, setOpenModal, onClose }) {
   const [commentText, setCommentText] = useState();
+  const [errorMessage, setErrorMessage] = useState(false);
   const { commentData } = useSelector((state) => state.common);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,6 +24,12 @@ export default function PopUpBox({ commentToEdit, setOpenModal, onClose }) {
     dispatch(storeReply(data));
     setOpenModal(false);
   };
+  const validateUpdateComment = () => {
+    if (commentText.trim() !== "") {
+      setErrorMessage(false);
+      updateComment();
+    } else setErrorMessage(true);
+  };
   return (
     <div className="modalBox">
       <div className="header">Edit Comment</div>
@@ -35,8 +42,9 @@ export default function PopUpBox({ commentToEdit, setOpenModal, onClose }) {
             onChange={handleCommentChange}
           />
         </div>
+        {errorMessage && <div>Empty name or message</div>}
         <div className="buttonHolder">
-          <div onClick={updateComment} className="buttonBox">
+          <div onClick={validateUpdateComment} className="buttonBox">
             Save
           </div>
           <div onClick={onClose} className="buttonBox">
